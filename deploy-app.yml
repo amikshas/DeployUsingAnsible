@@ -1,0 +1,11 @@
+- hosts: tomcat
+  become: yes
+  tasks:
+                   
+    - name: Copy snapshot.jar.
+      copy:
+        src: /var/lib/jenkins/workspace/demoProject1_Job/target/my-app-1.1-SNAPSHOT.jar
+        dest: /opt/tomcat/apache-tomcat-9.0.53/webapps
+        mode: 0755
+        remote_src: no
+
