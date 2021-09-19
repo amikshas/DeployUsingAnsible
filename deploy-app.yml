@@ -8,4 +8,6 @@
         dest: /opt/tomcat/apache-tomcat-9.0.53/webapps
         mode: 0755
         remote_src: no
+    - name: Starting Apache Tomcat service.
+      shell: /opt/tomcat/apache-tomcat-9.0.53/bin/startup.sh
 
