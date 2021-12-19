@@ -88,7 +88,9 @@ resource "null_resource" "control-node" {
       private_key = tls_private_key.private-key.private_key_pem
       host        = aws_instance.web.*.public_dns[0]
     }
-
+    provisioner "local-exec" {
+      command = "echo '${tls_private_key.private-key.private_key_pem}' > ~/.ssh/student.pem && chmod 600 ~/.ssh/student.pem "
+    }
     provisioner "remote-exec" {
       inline = [
         "sudo apt-get update -y",
@@ -110,7 +112,5 @@ resource "null_resource" "control-node" {
       ]
     }
 
-    provisioner "local-exec" {
-      command = "echo '${tls_private_key.private-key.private_key_pem}' > ~/.ssh/student.pem && chmod 600 ~/.ssh/student.pem "
-    }
+    
 }
